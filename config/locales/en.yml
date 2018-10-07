@@ -1,0 +1,19 @@
+en:
+  workarea:
+    admin:
+      circuit_breaker:
+        flash_messages:
+          turned_on: "%{circuit} has been enabled"
+          turned_off: "%{circuit} has been disabled for %{break_for}"
+        break: Break
+        break_for: Break For
+        broken_until: Broken Until
+        circuit: Circuit
+        current_fails: Current Fails
+        enable: Enable
+        max_fails: Max Fails
+        message: Message
+        sentry: Sentry
+        timeline: Timeline
+        window: Window
+        manually_broke_circuit: "%{user} manually broke circuit"
