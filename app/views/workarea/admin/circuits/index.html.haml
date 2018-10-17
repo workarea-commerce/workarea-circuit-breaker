@@ -1,0 +1,41 @@
+%table
+  %thead
+    %tr
+      %th= t('workarea.admin.circuit_breaker.circuit')
+      %th= t('workarea.admin.circuit_breaker.max_fails')
+      %th= t('workarea.admin.circuit_breaker.window')
+      %th= t('workarea.admin.circuit_breaker.break_for')
+      %th= t('workarea.admin.circuit_breaker.current_fails')
+      %th= t('workarea.admin.circuit_breaker.timeline')
+      %th= t('workarea.admin.circuit_breaker.broken_until')
+      %th
+  %tbody
+    - @circuits.each do |circuit|
+      %tr
+        %td= circuit.name
+        %td= circuit.max_fails
+        %td= circuit.window.inspect
+        %td= circuit.break_for.inspect
+        %td= circuit.current_fails
+        %td
+          - if circuit.timeline.present?
+            %ul.list-reset
+              - circuit.timeline.each do |failure_message|
+                %li
+                  = failure_message.timestamp.to_s(:time_only)
+                  - if failure_message.event_id.present?
+                    %strong= t('workarea.admin.circuit_breaker.sentry')
+                    = failure_message.event_id
+                  %strong= t('workarea.admin.circuit_breaker.message')
+                  = failure_message.message
+        %td
+          - if circuit.broken_until.present?
+            = circuit.broken_until.to_s(:time_only)
+        - if circuit.healthy?
+          %td
+            = inline_svg('workarea/admin/valid.svg', class: 'svg-icon svg-icon--green')
+            = link_to t('workarea.admin.circuit_breaker.break'), disable_circuit_path(circuit.slug), data: { method: 'post' }
+        - else
+          %td
+            = inline_svg('workarea/admin/invalid.svg', class: 'svg-icon svg-icon--red')
+            = link_to t('workarea.admin.circuit_breaker.enable'), enable_circuit_path(circuit.slug), data: { method: 'post' }

@@ -1,18 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Declare your gem's dependencies in circuit_breaker.gemspec.
-# Bundler will treat runtime dependencies like base dependencies, and
-# development dependencies will be added by default to the :development group.
 gemspec
 
-# Declare any dependencies that are still in development here instead of in
-# your gemspec. These might include edge Rails or gems from your path or
-# Git. Remember to move these dependencies to your gemspec before releasing
-# your gem to rubygems.org.
+gem 'workarea', source: "https://gems.weblinc.com"
+gem 'workarea-ci', source: "https://gems.weblinc.com", require: false
 
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
-
-gem 'workarea', git: 'ssh://git@stash.tools.weblinc.com:7999/wl/workarea.git'
-gem 'workarea-ci', git: 'ssh://git@stash.tools.weblinc.com:7999/wl/workarea.git', require: false
+gem 'simplecov', require: false, group: :test

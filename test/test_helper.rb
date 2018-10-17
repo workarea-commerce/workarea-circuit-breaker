@@ -1,3 +1,8 @@
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter 'lib/workarea/circuit_breaker/version.rb'
+end
+
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
