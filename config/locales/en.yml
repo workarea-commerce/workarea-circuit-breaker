@@ -1,6 +1,9 @@
 en:
   workarea:
     admin:
+      shared:
+        primary_nav:
+          circuit_breaker_title: Circuit Breakers
       circuit_breaker:
         flash_messages:
           turned_on: "%{circuit} has been enabled"
@@ -15,5 +18,12 @@ en:
         message: Message
         sentry: Sentry
         timeline: Timeline
+        title: Circuit Breakers
         window: Window
         manually_broke_circuit: "%{user} manually broke circuit"
+        no_circuits: There are currently no circuits defined.
+        help_text: Circuits are developer configured code blocks that allow for processes to execute a defined fallback when a service fails within a given set of parameters.
+        help:
+          max_fails: Maximum times this circuit can fail before shutting off.
+          window: Timeframe in which a Max fails would trigger a circuit to shut off. Eg. five failures (max fails) in one minute (window) will trigger the circuit to shut off.
+          break_for: How long to turn the circuit off for when the max failures limit is reached within the window duration.

@@ -7,7 +7,7 @@ module Workarea
 
       def disable
         circuit = CircuitViewModel.new(CircuitBreaker[params[:id]])
-        circuit.add_failure(message: t('workarea.admin.circuit_breaker.manually_broke_circuit', current_user.name))
+        circuit.add_failure(message: t('workarea.admin.circuit_breaker.manually_broke_circuit', user: current_user.name))
         circuit.break!
 
         flash[:success] = t('workarea.admin.circuit_breaker.flash_messages.turned_off', circuit: circuit.name, break_for: circuit.break_for.inspect)

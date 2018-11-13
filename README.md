@@ -12,7 +12,7 @@ Configure how circuit breaker should handle external service calls
     # break_for: how long the circuit should fast fail after broken
     Workarea.Configure do |config|
       config.circuit_breaker.circuits = {
-        exteral_service: { max_fails: 3, break_for: 5.minutes, window 5.minutes }
+        exteral_service: { max_fails: 3, break_for: 5.minutes, window: 5.minutes }
       }
     end
 
