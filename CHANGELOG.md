@@ -1,3 +1,15 @@
+Workarea Circuit Breaker 1.0.1 (2019-04-30)
+--------------------------------------------------------------------------------
+
+*   Improve admin UI
+
+    Add tool tips to the circuit breaker table along with help text. Fix a bug with user name not displaying in the time line message. Add link to settings menu.
+
+    WCB-2
+    Eric Pigeon
+
+
+
 Workarea Circuit Breaker 1.0.0 (2018-11-13)
 --------------------------------------------------------------------------------
 
