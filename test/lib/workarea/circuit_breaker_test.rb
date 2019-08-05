@@ -22,18 +22,20 @@ module Workarea
       end
     end
 
-    def test_config_is_frozen
-      error = assert_raises RuntimeError do
-        CircuitBreaker.add_service(:fake_service)
+    if running_from_source?
+      def test_config_is_frozen
+        error = assert_raises RuntimeError do
+          CircuitBreaker.add_service(:fake_service)
+        end
+
+        assert_equal("can't modify frozen Hash", error.message)
+
+        error = assert_raises RuntimeError do
+          Workarea.config.circuit_breaker.circuit_defaults = {}
+        end
+
+        assert_equal("can't modify frozen ActiveSupport::Configurable::Configuration", error.message)
       end
-
-      assert_equal("can't modify frozen Hash", error.message)
-
-      error = assert_raises RuntimeError do
-        Workarea.config.circuit_breaker.circuit_defaults = {}
-      end
-
-      assert_equal("can't modify frozen ActiveSupport::Configurable::Configuration", error.message)
     end
   end
 end
