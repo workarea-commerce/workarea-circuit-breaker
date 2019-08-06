@@ -1,3 +1,13 @@
+Workarea Circuit Breaker 1.0.2 (2019-08-06)
+--------------------------------------------------------------------------------
+
+*   Only run config freezing test when running tests from source
+
+    WCB-3
+    Jeff Yucis
+
+
+
 Workarea Circuit Breaker 1.0.1 (2019-04-30)
 --------------------------------------------------------------------------------
 
