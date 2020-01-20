@@ -72,6 +72,12 @@ module Workarea
       event.id
     end
 
+    def self.freeze_config!
+      Workarea.config.circuit_breaker.freeze
+      Workarea.config.circuit_breaker.circuits.freeze
+      Workarea.config.circuit_breaker.circuit_defaults.freeze
+    end
+
     private
 
       def self.pool_options
