@@ -9,7 +9,7 @@ module Workarea
         if has_event_id == "1"
           event_id_length = string[9, 2].to_i(16)
           event_id = string[11, event_id_length]
-          message = string[11+event_id_length, string.length]
+          message = string[11 + event_id_length, string.length]
         else
           event_id = nil
           message = string[9, string.length]
