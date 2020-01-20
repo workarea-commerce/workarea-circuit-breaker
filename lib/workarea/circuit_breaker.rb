@@ -60,13 +60,16 @@ module Workarea
     end
 
     def self.capture_exception(exception)
-      event_id = if defined?(::Raven)
-        Raven.capture_exception(exception)&.id
+      event = if defined?(::Raven)
+        Raven.capture_exception(exception) || nil
       else
         Rails.logger.warn exception
         nil
       end
-      event_id
+
+      return if event.blank?
+
+      event.id
     end
 
     private
