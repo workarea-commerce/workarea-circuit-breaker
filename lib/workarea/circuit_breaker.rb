@@ -59,14 +59,32 @@ module Workarea
       end
     end
 
+    # Capture errors thrown by code that is running in the circuit
+    # breaker. When `Sentry::Raven` is installed, send the error over to
+    # Sentry and return the event ID. Otherwise, just return `nil`. This
+    # will also return `nil` when Sentry is not configured to capture
+    # exceptions in the environment, such as when tests are running.
+    #
+    # @param [Exception] exception - Error thrown by the application
+    # @return [String] Event ID or `nil` when the exception was not
+    #                  captured by Sentry.
     def self.capture_exception(exception)
-      event_id = if defined?(::Raven)
-        Raven.capture_exception(exception)&.id
+      event = if defined?(::Raven)
+        Raven.capture_exception(exception) || nil
       else
         Rails.logger.warn exception
         nil
       end
-      event_id
+
+      return if event.blank?
+
+      event.id
+    end
+
+    def self.freeze_config!
+      Workarea.config.circuit_breaker.freeze
+      Workarea.config.circuit_breaker.circuits.freeze
+      Workarea.config.circuit_breaker.circuit_defaults.freeze
     end
 
     private
