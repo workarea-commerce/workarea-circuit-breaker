@@ -1,3 +1,22 @@
+Workarea Circuit Breaker 1.0.3 (2020-02-05)
+--------------------------------------------------------------------------------
+
+*   Remove SENTRY_DSN from workflow
+
+    Tom Scott
+
+*   Fix Exception Capturing
+
+    Since `Raven.capture_exception` can sometimes return a blank value,
+    ensure that `CircuitBreaker.capture_exception` won't throw an error when
+    trying to get the event ID from Sentry. Fixes a test that breaks when
+    both the Sentry and CircuitBreaker plugins are installed.
+
+    WORKAREA-189
+    Tom Scott
+
+
+
 Workarea Circuit Breaker 1.0.2 (2019-08-06)
 --------------------------------------------------------------------------------
 
