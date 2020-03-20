@@ -43,6 +43,7 @@ task :release do
   system 'git push --tags'
 
   system "gem build workarea-circuit_breaker.gemspec"
+  system "gem push workarea-circuit_breaker-#{Workarea::CircuitBreaker::VERSION}.gem"
   system "gem push workarea-circuit_breaker-#{Workarea::CircuitBreaker::VERSION}.gem --host #{host}"
   system "rm workarea-circuit_breaker-#{Workarea::CircuitBreaker::VERSION}.gem"
 end
